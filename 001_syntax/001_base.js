@@ -3,6 +3,7 @@
  *
  */
 function helloWorld() {
+  console.log('Hello World');
 }
 
 /**
@@ -10,6 +11,8 @@ function helloWorld() {
  *
  */
 function displayConst() {
+  const test = 'hoge';
+  console.log(test);
 }
 
 /**
@@ -17,6 +20,8 @@ function displayConst() {
  *
  */
 function displayLet() {
+  let test = 'hoge';
+  console.log(test);
 }
 
 /**
@@ -24,6 +29,7 @@ function displayLet() {
  *
  */
 function displayArgument(arg) {
+  console.log(arg);
 }
 
 /**
@@ -31,6 +37,7 @@ function displayArgument(arg) {
  *
  */
 function sumTwoArgs(a, b) {
+  return a + b;
 }
 
 /**
@@ -38,6 +45,7 @@ function sumTwoArgs(a, b) {
  *
  */
 function subtractTwoArgs(a, b) {
+  return a - b;
 }
 
 /**
@@ -45,6 +53,8 @@ function subtractTwoArgs(a, b) {
  *
  */
 function quotientTwoArgs(a, b) {
+  // return a === 0 || b === 0? null : Math.trunc(a / b);  組み込み関数を使用しているのでコメント
+  return a === 0 || b === 0 ? null : a / b | 0;
 }
 
 /**
@@ -52,6 +62,7 @@ function quotientTwoArgs(a, b) {
  *
  */
 function productTwoArgs(a, b) {
+  return a * b;
 }
 
 /**
@@ -59,6 +70,7 @@ function productTwoArgs(a, b) {
  *
  */
 function remainderTwoArgs(a) {
+  return a % 2;
 }
 
 /**
@@ -66,6 +78,7 @@ function remainderTwoArgs(a) {
  *
  */
 function isEven(a) {
+  return a % 2 === 0?true:false;
 }
 
 /**
@@ -73,6 +86,7 @@ function isEven(a) {
  *
  */
 function concatString(a, b) {
+  return `${a}${b}`;
 }
 
 module.exports = {

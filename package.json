@@ -6,7 +6,7 @@
   "author": "version-1 <j.onodera26@gmail.com>",
   "license": "MIT",
   "scripts": {
-     "test": "jest"
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^25.1.0",
