@@ -56,7 +56,8 @@ function substring(str, a, b) {
  * */
 
 function isInclude(a, b) {
-  return a.indexOf(b) != -1 ? true : false; // 検索される文字列.indexOf(パターン):一致した場所のインデックス番号を返却、不一致は-1を返す
+  // return a.indexOf(b) != -1 ? true : false; // 検索される文字列.indexOf(パターン):一致した場所のインデックス番号を返却、不一致は-1を返す
+  return a.includes(b);
 }
 
 /**
@@ -76,7 +77,7 @@ function isInclude(a, b) {
 
 function printByChar(str) {
   for (let i = 0; i <= str.length; i++) {
-    console.log(str.charAt(i));
+    console.log(str.charAt(i)); // str.charAt(抜き出したい文字列のインデックス番号(0から))
   }
 }
 
