@@ -4,6 +4,9 @@
  */
 
 function printArray(array) {
+  for (let i = 0; i < array.length; i++) {
+    console.log(array[i]);
+  }
 }
 
 /**
@@ -22,6 +25,15 @@ function printArray(array) {
  *
  */
 function getDays() {
+  return date = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 }
 
 /**
@@ -35,6 +47,12 @@ function getDays() {
  */
 
 function findNum(array, num) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -48,6 +66,17 @@ function findNum(array, num) {
  */
 
 function isDuplicate(array) {
+  // https://pisuke-code.com/js-check-duplicated-array-values/
+  // let s = new Set(array);
+  // return s.size ！= array.length; // setオブジェクトは重複した値は挿入できないので、元の配列長とsetオブジェクトのサイズが異なる場合 = 重複した値が存在した、ということになる。
+  for (let i = 0; i < array.length; i++) {
+    for (let ii = 0; ii < array.length; ii++) {
+      if (i != ii && array[i] === array[ii]) { // 一つの値と、その値とインデックス番号が違う値を比べる
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 module.exports = {
