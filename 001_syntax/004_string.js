@@ -4,6 +4,7 @@
  */
 
 function length(str) {
+  return str.length;
 }
 
 /**
@@ -12,6 +13,7 @@ function length(str) {
  */
 
 function lengthIsEven(str) {
+  return str.length % 2 === 0 ? true : false;
 }
 
 /**
@@ -20,6 +22,7 @@ function lengthIsEven(str) {
  */
 
 function firstChar(str) {
+  return str.slice(0, 1); // string.slice(取得開始場所, 取得終了場所)
 }
 
 /**
@@ -28,6 +31,7 @@ function firstChar(str) {
  */
 
 function lastChar(str) {
+  return str.slice(-1); // 負の数を指定すると末尾から取得できる
 }
 
 /**
@@ -37,6 +41,7 @@ function lastChar(str) {
  */
 
 function substring(str, a, b) {
+  return str.substr(a - 1, b); // https://qiita.com/littlekbt/items/4a47f485391b6b45d96c
 }
 
 /**
@@ -51,6 +56,7 @@ function substring(str, a, b) {
  * */
 
 function isInclude(a, b) {
+  return a.indexOf(b) != -1 ? true : false; // 検索される文字列.indexOf(パターン):一致した場所のインデックス番号を返却、不一致は-1を返す
 }
 
 /**
@@ -69,6 +75,9 @@ function isInclude(a, b) {
  */
 
 function printByChar(str) {
+  for (let i = 0; i <= str.length; i++) {
+    console.log(str.charAt(i));
+  }
 }
 
 
