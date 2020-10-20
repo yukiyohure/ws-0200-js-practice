@@ -8,6 +8,11 @@
  */
 
 function getPersonObject() {
+  return {
+    name : 'Bob',
+    age : 32,
+    gender : 'male',
+  };
 }
 
 /**
@@ -25,6 +30,10 @@ function getPersonObject() {
  */
 
 function mutateObject(person) {
+  person.name = 'Mary';
+  person.age = 37;
+  person.gender = 'female';
+  return person;
 }
 
 /**
@@ -49,6 +58,13 @@ function mutateObject(person) {
  */
 
 function assignNumber(persons) {
+  const obj = {};
+  let randomNumber;
+  for (let i = 0; i < persons.length; i++) {
+    randomNumber = Math.floor(Math.random() * 11) + 1; // 最小値が1なので+1する。Math.floor(Math.random() * 最大値 - 最小値) + 最小値
+    obj[persons[i]] = randomNumber;
+  }
+  return obj;
 }
 
 /**
@@ -63,6 +79,14 @@ function assignNumber(persons) {
  */
 
 function isDuplicate(array) {
+  const obj = {};
+  for (let i = 0; i < array.length; i++) {
+    if (obj[array[i]]) {
+      return true;
+    }
+    obj[array[i]] = true; // 重複しなかった配列の値のキーにtrueを与えることで、次に同じ値が入ってきたときにこのキーの値を見ることになり、if文でtrueになる。
+  }
+  return false;
 }
 
 module.exports = {
