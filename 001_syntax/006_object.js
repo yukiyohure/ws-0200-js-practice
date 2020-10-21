@@ -62,7 +62,7 @@ function assignNumber(persons) {
   let randomNumber;
   for (let i = 0; i < persons.length; i++) {
     randomNumber = Math.floor(Math.random() * 11) + 1; // 最小値が1なので+1する。Math.floor(Math.random() * 最大値 - 最小値) + 最小値
-    obj[persons[i]] = randomNumber;
+    obj[persons[i]] = randomNumber; // ブラケット記法で変数でkeyを指定する
   }
   return obj;
 }
