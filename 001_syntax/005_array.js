@@ -71,16 +71,14 @@ function isDuplicate(array) {
   // return s.size ！= array.length; // setオブジェクトは重複した値は挿入できないので、元の配列長とsetオブジェクトのサイズが異なる場合 = 重複した値が存在した、ということになる。
 
   // 改善版
-  // function isDuplicate(array) {
-  //   for (let i = 0; i < array.length; i++) {
-  //     for (let j = i + 1; i < array.length; j++) {
-  //       if (array[i] === array[j]) {
-  //         return true;
-  //       }
+  // for (let i = 0; i < array.length; i++) {
+  //   for (let j = i + 1; i < array.length; j++) {
+  //     if (array[i] === array[j]) {
+  //       return true;
   //     }
   //   }
-  //   return false
   // }
+  // return false
 
   for (let i = 0; i < array.length; i++) {
     for (let ii = 0; ii < array.length; ii++) {
