@@ -10,6 +10,9 @@
  *
  */
 function rotate(str, num) {
+  // 要件のメモ: (numが正の数 => 末尾 || numが負の数 => 1文字目)からnum文字分切り取りした文字が最後にくっつく
+  const number = num >= 0 ? str.length - num : -num;
+  return str.slice(number, str.length) + str.slice(0, number);
 }
 
 /**
@@ -24,6 +27,8 @@ function rotate(str, num) {
  *
  */
 function removeVowels(str) {
+  return str.replace(/[a, i, u, e, o]/g, ''); // グローバルに母音を空文字に置換して、削除の振る舞いをする
+  // 正規表現が一定であることがわかっている場合、↑のようにリテラルを使ったほうが良いパフォーマンスを得られる
 }
 
 /**
@@ -38,6 +43,8 @@ function removeVowels(str) {
  *
  */
 function countStr(s1, s2) {
+  const ex = new RegExp(s2, 'g'); // 複数件を検索するためにgフラグを設定する
+  return s1.match(ex).length;
 }
 
 /**
@@ -53,6 +60,8 @@ function countStr(s1, s2) {
  */
 
 function isPalindrome(str) {
+  const reversed = str.split('').reverse().join(''); // 文字列を反転
+  return reversed === str;
 }
 
 /**
@@ -70,6 +79,12 @@ function isPalindrome(str) {
  *
  */
 function isPrime(num) {
+  if (num === 2) return true; // 2は素数
+  if (num === 1) return false; // 1は素数ではない
+  for (let i = 2; i < num; i++) { // 2以上の数字で倍数が見つかれば素数ではない
+    if (num % i === 0) return false;
+  }
+  return true;
 }
 
 /**
@@ -88,6 +103,18 @@ function isPrime(num) {
  *
  */
 function sumWithout4andNext(array) {
+  const filterCallback = (val, index, array) => { // 値が4または4の次のインデックスの値の場合、合計の対象配列に加えない
+    if (val === 4 || (array[index - 1] === 4)) {
+      return false;
+    }
+    return true;
+  }
+
+  const reduceCallback = (acc, current) => { // このreduceはただ加算していくだけ
+    return acc += current;
+  }
+
+  return array.filter(filterCallback).reduce(reduceCallback, 0); // filterで絞られた配列の値を合計する
 }
 
 module.exports = {
