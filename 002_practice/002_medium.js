@@ -60,8 +60,14 @@ function countStr(s1, s2) {
  */
 
 function isPalindrome(str) {
-  const reversed = str.split('').reverse().join(''); // 文字列を反転
-  return reversed === str;
+  // const reversed = str.split('').reverse().join(''); // 文字列を反転
+  // return reversed === str;
+  for (let i = 0; i < (str.length / 2); i++) { // 元の回答だとsplitで全文字数分処理が走るので、このように繰り返しの回数を減らす工夫をする→半分から以降は回文かどうかを判断する必要がない
+    if (str[i] !== str[str.length - i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -79,12 +85,22 @@ function isPalindrome(str) {
  *
  */
 function isPrime(num) {
-  if (num === 2) return true; // 2は素数
-  if (num === 1) return false; // 1は素数ではない
-  for (let i = 2; i < num; i++) { // 2以上の数字で倍数が見つかれば素数ではない
+  // if (num === 2) return true; // 2は素数
+  // if (num === 1) return false; // 1は素数ではない
+  // for (let i = 2; i < num; i++) { // 2以上の数字で倍数が見つかれば素数ではない
+  //   if (num % i === 0) return false;
+  // }
+  // return true;
+
+  if (num === 2) return true;
+  if (num === 1) return false;
+  if (num % 2 === 0) return false; // ここで偶数も判断してあげればforで3から処理を始めることができる
+  for (let i = 3; i < Math.sqrt(num); i = i + 2) { // forの回数の上限を平方根にすればおよそ半分の回数で処理が完了する
     if (num % i === 0) return false;
   }
   return true;
+
+  // 100 → 1*100,2*50,4*25,5*20,10*10|10*10,5*20,4*25...なので平方根にすれば半分以降の無駄な判断はいらなくなる(平方根になることを知っているか知らないかの違い)
 }
 
 /**
@@ -103,18 +119,30 @@ function isPrime(num) {
  *
  */
 function sumWithout4andNext(array) {
-  const filterCallback = (val, index, array) => { // 値が4または4の次のインデックスの値の場合、合計の対象配列に加えない
-    if (val === 4 || (array[index - 1] === 4)) {
-      return false;
+  // const filterCallback = (val, index, array) => { // 値が4または4の次のインデックスの値の場合、合計の対象配列に加えない
+  //   if (val === 4 || (array[index - 1] === 4)) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
+  // const reduceCallback = (acc, current) => { // このreduceはただ加算していくだけ
+  //   return acc += current;
+  // }
+
+  // return array.filter(filterCallback).reduce(reduceCallback, 0); // filterで絞られた配列の値を合計する
+
+  let sum = 0
+  for (let i = 0; i < array.length; i++) { // 組み込み関数を使うよりも制御構文を使用する方がコーディングテスト的には良いし、小回りが効く実装になる。実戦では可読性を重視して組み込み関数を用いる方が良い傾向にある。
+    if (array[i] === 4) {
+      continue;
     }
-    return true;
+    if (i > 0 && array[i - 1] === 4) {
+      continue;
+    }
+    sum += array[i]
   }
-
-  const reduceCallback = (acc, current) => { // このreduceはただ加算していくだけ
-    return acc += current;
-  }
-
-  return array.filter(filterCallback).reduce(reduceCallback, 0); // filterで絞られた配列の値を合計する
+  return sum;
 }
 
 module.exports = {

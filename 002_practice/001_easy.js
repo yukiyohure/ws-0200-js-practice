@@ -12,9 +12,15 @@
  */
 
 function length(str) {
+  // let charCount = 0;
+  // const strArray = str.split(''); // 一文字ごとに配列にする
+  // while (strArray[charCount]) { // 配列の中身がある限りcharCountは増える
+  //   charCount++;
+  // }
+  // return charCount; // 増えた回数 = 文字長
+
   let charCount = 0;
-  const strArray = str.split(''); // 一文字ごとに配列にする
-  while (strArray[charCount]) { // 配列の中身がある限りcharCountは増える
+  while (str[charCount]) { // es6からのブラケット記法により文字列をわざわざ配列に変換しなくて良い
     charCount++;
   }
   return charCount; // 増えた回数 = 文字長
@@ -169,11 +175,26 @@ function size(array) {
  */
 
 function minMax(array) {
+  // if (array.length === 0) {
+  //   return;
+  // }
+  // let max = array.reduce((last, current) => last > current ? last : current);
+  // let min = array.reduce((last, current) => last > current ? current : last);
+  // console.log(`max: ${max}, min: ${min}`);
+
   if (array.length === 0) {
     return;
   }
-  let max = array.reduce((last, current) => last > current ? last : current);
-  let min = array.reduce((last, current) => last > current ? current : last);
+  let max;
+  let min;
+  for (let i = 0; i < array.length; i++) { // 1回の繰り返しで済む(自分の回答だと繰り返しが2回)
+    if (!max || max < array[i]) {
+      max = array[i]
+    }
+    if (!min || min > array[i]) {
+      min = array[i]
+    }
+  }
   console.log(`max: ${max}, min: ${min}`);
 }
 
@@ -209,11 +230,17 @@ function seq(num) {
  */
 
 function omitSeq(num) {
+  // let result = [];
+  // for (let i = 0; i <= num; i++) {
+  //   if (i != 0 && i % 2 === 1) {
+  //     result.push(i);
+  //   }
+  // }
+  // return result;
+
   let result = [];
-  for (let i = 0; i <= num; i++) {
-    if (i != 0 && i % 2 === 1) {
-      result.push(i);
-    }
+  for (let i = 1; i <= num; i = i + 2) { // forのインデックスの増え方を調整して、ifの処理を行う必要がなくなる
+    result.push(i);
   }
   return result;
 }
