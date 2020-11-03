@@ -98,13 +98,13 @@ function fibonacci (num, index = 0, array = []) {
 
 function fileSize (node, sum = 0) {
   // basecase
-  if ( !node.children && node.size ) return sum + node.size; // childrenがない = 子要素がない場合は最終的な和を返す
+  if (!node.children && node.size) return sum + node.size; // childrenがない = 子要素がない場合はsizeとの和を返す
 
   return node.children.reduce((acc, cur) => { // nodeのchildrenの中の配列をreduceで回す
     if (cur.children) { // childrenの配列の要素の中にさらにchildrenがあった場合、↓
       return acc + fileSize(cur, acc); // そのnode(cur)と今現在のファイル合計サイズの値を引数に指定し、再起呼び出しを行う
     }
-    return acc + cur.size; // もうcurにchildrenが見つからない場合、「そのnode(cur)のsize」と「今までの合計値(acc)」の和を返す
+    return acc + cur.size; // curにchildrenが見つからない場合、「そのnode(cur)のsize」と「今までの合計値(acc)」の和を返す
   }, 0);
 }
 
