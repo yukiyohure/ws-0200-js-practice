@@ -12,6 +12,13 @@
  */
 
 function linearSearch (array, target) {
+  let matchIndex = -1;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === target) {
+      matchIndex = i;
+    }
+  }
+  return matchIndex;
 }
 
 /**
@@ -25,6 +32,20 @@ function linearSearch (array, target) {
  */
 
 function binarySearch (array, target) {
+  let low = 0; // 最小インデックス番号
+  let high = (array.length) - 1; // 最大インデックス番号
+  while (low <= high) {
+    let middle = Math.trunc((high + low) /2); // 中間インデックス番号
+    let guess = array[middle]; // middleの場所にある値
+    if (guess === target) { // 検索対象を発見したら
+      return middle; // その値のインデックス番号を返す
+    } else if (guess > target) {
+      high = middle - 1;
+    } else if (guess < target) {
+      low = middle + 1;
+    }
+  }
+  return -1; // どれにも該当しない場合は-1
 }
 
 module.exports = {
