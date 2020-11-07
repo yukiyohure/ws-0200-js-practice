@@ -33,7 +33,7 @@ function bubbleSort (array) {
  */
 
 function insertSort (array) {
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) { // 最初の値は比較する必要はないので1からループを始める
     let tmp = array[i]; // 比べる対象の値を退避しておく(値を入れ替えていくため)
     if (tmp < array[i - 1]) { // 値が左隣の値より小さかった場合
       let j = i;
@@ -58,9 +58,36 @@ function insertSort (array) {
  */
 
 function mergeSort (arr) {
+  if (arr.length === 1) return arr; // devide until the length of array become 1
+
+  let middleIndex = Math.floor(arr.length / 2);
+  let leftArray = arr.slice(0, middleIndex); // slice() doesn't include the end
+  let rightArray = arr.slice(middleIndex); // you can leave out the second parameter instead of setting arr.length
+
+  return merge(
+    mergeSort(leftArray),
+    mergeSort(rightArray)
+  );
 }
 
 function merge(left, right) {
+  let output = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    let leftElement = left[leftIndex];
+    let rightElement = right[rightIndex];
+
+    if (leftElement < rightElement) { // adopt left
+      output.push(leftElement);
+      leftIndex++;
+    } else { // adopt right
+      output.push(rightElement);
+      rightIndex++;
+    }
+  }
+  return output.concat(left.slice(leftIndex)).concat(right.slice(rightIndex)); // concatnate rest of array to output
 }
 
 /**
@@ -74,6 +101,18 @@ function merge(left, right) {
  */
 
 function quickSort (a, start = 0, end = (a.length -1)) {
+  // base case
+  if (a.length <= 1) return a; // return if array has only one element or nothing
+
+  let pivot = a[a.length - 1]; // let's take the most right element of array as pivot
+  let leftArray = [];
+  let rightArray = [];
+  // loop (length - 1) times so that it shoudn't include the pivot number
+  for (let i = 0; i < a.length - 1; i++) {
+    pivot > a[i] ? leftArray.push(a[i]) : rightArray.push(a[i]);
+  }
+  // thanks to base case, what we need to do to merge array is just call quickSort() recursively
+  return [...quickSort(leftArray), pivot, ...quickSort(rightArray)];
 };
 
 module.exports = {
