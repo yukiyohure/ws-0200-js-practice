@@ -58,7 +58,7 @@ function insertSort (array) {
  */
 
 function mergeSort (arr) {
-  if (arr.length === 1) return arr; // devide until the length of array become 1
+  if (arr.length <= 1) return arr; // devide until the length of array become 1
 
   let middleIndex = Math.floor(arr.length / 2);
   let leftArray = arr.slice(0, middleIndex); // slice() doesn't include the end
